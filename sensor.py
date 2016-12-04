@@ -46,9 +46,9 @@ class sensors():
 
   def forward_distance(self):
     self.left = self.get_distance(self.left_sensor)
-    #time.sleep(.2)
-    #self.right = self.get_distance(self.right_sensor)
-    return self.left, #self.right
+    time.sleep(.2)
+    self.right = self.get_distance(self.right_sensor)
+    return self.left, self.right
 
 
 
