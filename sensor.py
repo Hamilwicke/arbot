@@ -46,7 +46,7 @@ class sensors():
     if distance > 5 and distance < 200:      #Check whether the distance is within range
       return distance - 0.5
     else:
-      return None
+      return 200
 
   def forward_left(self):
     left = self.get_distance(self.left_sensor)
