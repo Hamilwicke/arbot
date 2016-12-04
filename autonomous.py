@@ -14,7 +14,7 @@ while True:
     right_sensor = snsr.forward_distance()[1]
     print left_sensor, right_sensor
     try:
-        time.sleep(.5)
+
         arbot.forward(155)
         arbot.forward(crusing_speed)
 
@@ -23,12 +23,14 @@ while True:
             arbot.stop(crusing_speed)
             arbot.right_turn(255,1)
             print 'forward'
+            time.sleep(.5)
             pass
         if right_sensor <= stopping_distance:
             print 'right sensor proximity warning: making left turn'
             arbot.stop(crusing_speed)
             arbot.left_turn(255,1)
             print 'forward'
+            time.sleep(.5)
             pass
     except KeyboardInterrupt:
         print 'keyboard interrupt received'
