@@ -34,6 +34,7 @@ class sensors():
     while GPIO.input(ECHO)==1:               #Check whether the ECHO is HIGH
       pulse_end = time.time()                #Saves the last known time of HIGH pulse
 
+    GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
     pulse_duration = pulse_end - pulse_start #Get pulse duration to a variable
     print 'pulse start time =%s' % (pulse_start)
