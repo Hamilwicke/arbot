@@ -48,6 +48,13 @@ class sensors():
     else:
       return None
 
+  def forward_left(self):
+    left = self.get_distance(self.left_sensor)
+    return left
+
+  def forward_right(self):
+    right = self.get_distance(self.right_sensor)
+    return right
 
   def forward_distance(self):
     #print 'getting LEFT sensor distance'
