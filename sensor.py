@@ -17,6 +17,7 @@ class sensors():
     self.right_sensor = [self.RIGHT_TRIG, self.RIGHT_ECHO]
     self.left_sensor = [self.LEFT_TRIG, self.LEFT_ECHO]
 
+
   def get_distance(self, TRIG, ECHO):
 
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
