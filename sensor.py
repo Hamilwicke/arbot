@@ -68,7 +68,7 @@ class sensors():
       self.pulse(Slave_Trig)
       slave_distance = self.listen(Slave_Echo)
 
-    return master_distance, slave_distance
+      return master_distance, slave_distance
 
 
   def listen(self,ECHO):
