@@ -66,7 +66,7 @@ class sensors():
     Slave_Echo = self.RIGHT_ECHO
 
     self.pulse(Master_Trig)
-    print 'master pulse sent'
+    #print 'master pulse sent'
     master_distance = self.listen(Master_Echo)
 
     time.sleep(.1)
