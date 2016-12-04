@@ -1,5 +1,6 @@
 import driving
 import sensor
+import time
 
 arbot = driving.motion()
 snsr = sensor.sensors()
@@ -13,7 +14,7 @@ while True:
     right_sensor = snsr.forward_distance()[1]
     print left_sensor, right_sensor
     try:
-
+        time.sleep(.5)
         arbot.forward(155)
         arbot.forward(crusing_speed)
 
