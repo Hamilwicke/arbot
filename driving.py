@@ -11,7 +11,6 @@ class motion():
         self.rightRear = self.mh.getMotor(3)
         self.leftFront = self.mh.getMotor(2)
         self.leftRear = self.mh.getMotor(4)
-        self.speed = 155
 
     def turnOffMotors(self):
         '''

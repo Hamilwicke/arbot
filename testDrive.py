@@ -1,5 +1,3 @@
-
-
 import driving
 import time
 speed = 155
