@@ -38,11 +38,11 @@ class sensors():
     distance = pulse_duration * 17150        #Multiply pulse duration by 17150 to get distance
     distance = round(distance, 2)            #Round to two decimal points
 
-    #if distance > 2 and distance < 400:      #Check whether the distance is within range
-    #  print "Distance:",distance - 0.5,"cm"  #Print distance with 0.5 cm calibration
-    #else:
-    #  print "Out Of Range"                   #display out of range
-    return distance
+    if distance > 2 and distance < 400:      #Check whether the distance is within range
+      return distance - 0.5
+    else:
+      return None
+
 
   def forward_distance(self):
     self.left = self.get_distance(self.left_sensor)
