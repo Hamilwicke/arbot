@@ -23,21 +23,24 @@ class sensors():
 
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
+    print 'triggering pulse'
     GPIO.output(TRIG, True)                  #Set TRIG as HIGH
     time.sleep(0.00001)                      #Delay of 0.00001 seconds
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
+
     while GPIO.input(ECHO)==0:               #Check whether the ECHO is LOW
       pulse_start = time.time()              #Saves the last known time of LOW pulse
-    print pulse_start
+    print 'pulse start time =%s'%(pulse_start)
     while GPIO.input(ECHO)==1:               #Check whether the ECHO is HIGH
       pulse_end = time.time()                #Saves the last known time of HIGH pulse
-    print pulse_end
-    pulse_duration = pulse_end - pulse_start #Get pulse duration to a variable
+    print 'pulse end time =%s'%(pulse_end)
 
+    pulse_duration = pulse_end - pulse_start #Get pulse duration to a variable
+    print 'pulse duration = %s'%(pulse_duration)
     distance = pulse_duration * 17150        #Multiply pulse duration by 17150 to get distance
     distance = round(distance, 2)            #Round to two decimal points
-
+    print 'distance = %s'%(distance)
     if distance > 2 and distance < 400:      #Check whether the distance is within range
       return distance - 0.5
     else:
@@ -45,9 +48,10 @@ class sensors():
 
 
   def forward_distance(self):
-
+    print 'getting LEFT sensor distance'
     self.left = self.get_distance(self.left_sensor)
     time.sleep(.05)
+    print 'getting RIGHT sensor distance'
     self.right = self.get_distance(self.right_sensor)
     time.sleep(.05)
     return self.left, self.right

@@ -4,5 +4,7 @@ import time
 sn = sensor.sensors()
 
 while True:
+    print '============='
     print sn.forward_distance()
-    time.sleep(1)
+    print '============='
+    time.sleep(5)
