@@ -7,4 +7,4 @@ while True:
     #print '============='
     print sn.forward_distance()
     #print '============='
-    time.sleep(.5)
+    time.sleep(.1)
