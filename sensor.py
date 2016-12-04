@@ -64,6 +64,7 @@ class sensors():
     #print 'getting RIGHT sensor distance'
     right = self.get_distance(self.right_sensor)
     time.sleep(.1)
+    print left, right
     return left, right
 
 
