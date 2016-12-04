@@ -32,7 +32,7 @@ class sensors():
 
     while GPIO.input(ECHO)==1:               #Check whether the ECHO is HIGH
       pulse_end = time.time()                #Saves the last known time of HIGH pulse
-
+    GPIO.output(TRIG, False)
     pulse_duration = pulse_end - pulse_start #Get pulse duration to a variable
 
     distance = pulse_duration * 17150        #Multiply pulse duration by 17150 to get distance
@@ -46,9 +46,9 @@ class sensors():
 
   def forward_distance(self):
     time.sleep(.1)
-    self.left = self.get_distance(self.right_sensor)
+    self.left = self.get_distance(self.left_sensor)
     time.sleep(.1)
-    self.right = self.get_distance(self.left_sensor)
+    self.right = self.get_distance(self.right_sensor)
     time.sleep(.1)
     return self.left, self.right
 
