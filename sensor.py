@@ -40,7 +40,7 @@ class sensors():
     print 'pulse end time =%s' % (pulse_end)
     print 'pulse duration = %s'%(pulse_duration)
     distance = pulse_duration * 17150        #Multiply pulse duration by 17150 to get distance
-    distance = round(distance, 2)            #Round to two decimal points
+    #distance = round(distance, 2)            #Round to two decimal points
     print 'distance = %s'%(distance)
     if distance > 2 and distance < 400:      #Check whether the distance is within range
       return distance - 0.5
