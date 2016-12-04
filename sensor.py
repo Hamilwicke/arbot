@@ -20,9 +20,9 @@ class sensors():
 
 
   def get_distance(self, (TRIG, ECHO)):
-    time.sleep(.1)
+
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
-    time.sleep(.1)
+    time.sleep(.05)
     #print 'triggering pulse'
     GPIO.output(TRIG, True)                  #Set TRIG as HIGH
     time.sleep(0.00001)                      #Delay of 0.00001 seconds
@@ -60,10 +60,10 @@ class sensors():
     #print 'getting LEFT sensor distance'
 
     left = self.get_distance(self.left_sensor)
-    time.sleep(.1)
+    time.sleep(.05)
     #print 'getting RIGHT sensor distance'
     right = self.get_distance(self.right_sensor)
-    time.sleep(.1)
+    time.sleep(.05)
     print left, right
     return left, right
 
