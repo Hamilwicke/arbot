@@ -7,8 +7,11 @@ left_sensor = snsr.forward_distance()[0]
 right_sensor = snsr.forward_distance()[1]
 
 while True:
-    if snsr.forward_distance()[0] >= 10 and snsr.forward_distance()[1] >= 10:
-        arbot.forward(125)
+    arbot.forward(115)
+    if snsr.forward_distance()[0] <= 10:
+        arbot.right_turn(155,1)
+        pass
+    if snsr.forward_distance()[1] <= 10:
+        arbot.left_turn(155,1)
+        pass
 
-    else:
-        arbot.right_turn(1)
