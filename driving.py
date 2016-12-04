@@ -73,7 +73,11 @@ class motion():
         return current_speed
 
     def stop(self, speed, seconds=None):
-        for i in reversed(range(speed)):
+        self.mh.getMotor(1).run(Adafruit_MotorHAT.RELEASE)
+        self.mh.getMotor(2).run(Adafruit_MotorHAT.RELEASE)
+        self.mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
+        self.mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
+        '''for i in reversed(range(speed)):
             self.rightFront.setSpeed(i)
             time.sleep(0.001)
         self.rightFront.run(Adafruit_MotorHAT.RELEASE)
@@ -88,7 +92,7 @@ class motion():
         for i in reversed(range(speed)):
             self.leftRear.setSpeed(i)
             time.sleep(0.001)
-        self.leftRear.run(Adafruit_MotorHAT.RELEASE)
+        self.leftRear.run(Adafruit_MotorHAT.RELEASE)'''
 
 
     def right_turn(self, speed, seconds=None):
