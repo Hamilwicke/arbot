@@ -9,10 +9,10 @@ class sensors():
     self.RIGHT_TRIG = 16
     self.RIGHT_ECHO = 19
 
-    self.GPIO.setup(self.LEFT_TRIG, GPIO.OUT)
-    self.GPIO.setup(self.LEFT_ECHO, GPIO.IN)
-    self.GPIO.setup(self.RIGHT_TRIG, GPIO.OUT)
-    self.GPIO.setup(self.RIGHT_ECHO, GPIO.IN)
+    GPIO.setup(self.LEFT_TRIG, GPIO.OUT)
+    GPIO.setup(self.LEFT_ECHO, GPIO.IN)
+    GPIO.setup(self.RIGHT_TRIG, GPIO.OUT)
+    GPIO.setup(self.RIGHT_ECHO, GPIO.IN)
 
     self.right_sensor = [self.RIGHT_TRIG, self.RIGHT_ECHO]
     self.left_sensor = [self.LEFT_TRIG, self.LEFT_ECHO]
