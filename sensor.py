@@ -4,10 +4,10 @@ GPIO.setmode(GPIO.BCM)                     #Set GPIO pin numbering
 
 class sensors():
   def __init__(self):
-    self.LEFT_TRIG = 20
-    self.LEFT_ECHO = 21
-    self.RIGHT_TRIG = 16
-    self.RIGHT_ECHO = 19
+    self.LEFT_TRIG = 5
+    self.LEFT_ECHO = 12
+    self.RIGHT_TRIG = 17
+    self.RIGHT_ECHO = 23
 
     GPIO.setup(self.LEFT_TRIG, GPIO.OUT)
     GPIO.setup(self.LEFT_ECHO, GPIO.IN)
