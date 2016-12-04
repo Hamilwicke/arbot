@@ -51,7 +51,7 @@ class sensors():
     return self.left, self.right
 
 
-  def get_multi_sensor_distance(self,Master_Trig, Master_Echo, Slave_Trig, Slave_Echo):
+  def get_multi_sensor_distance(self):
     Master_Trig = self.LEFT_TRIG
     Master_Echo = self.LEFT_ECHO
     Slave_Trig = self.RIGHT_TRIG
