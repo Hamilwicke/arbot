@@ -37,12 +37,12 @@ class sensors():
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
     pulse_duration = pulse_end - pulse_start #Get pulse duration to a variable
-    print 'pulse start time =%s' % (pulse_start)
-    print 'pulse end time =%s' % (pulse_end)
-    print 'pulse duration = %s'%(pulse_duration)
+    #print 'pulse start time =%s' % (pulse_start)
+    #print 'pulse end time =%s' % (pulse_end)
+    #print 'pulse duration = %s'%(pulse_duration)
     distance = pulse_duration * 17150        #Multiply pulse duration by 17150 to get distance
     #distance = round(distance, 2)            #Round to two decimal points
-    print 'distance = %s'%(distance)
+    #print 'distance = %s'%(distance)
     if distance > 2 and distance < 400:      #Check whether the distance is within range
       return distance - 0.5
     else:
@@ -50,10 +50,10 @@ class sensors():
 
 
   def forward_distance(self):
-    print 'getting LEFT sensor distance'
+    #print 'getting LEFT sensor distance'
     self.left = self.get_distance(self.left_sensor)
     time.sleep(.05)
-    print 'getting RIGHT sensor distance'
+    #print 'getting RIGHT sensor distance'
     self.right = self.get_distance(self.right_sensor)
     time.sleep(.05)
     return self.left, self.right
