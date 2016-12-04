@@ -48,6 +48,7 @@ class sensors():
     self.left = self.get_distance(self.left_sensor)
     time.sleep(.1)
     self.right = self.get_distance(self.right_sensor)
+    time.sleep(.1)
     return self.left, self.right
 
 
@@ -58,6 +59,7 @@ class sensors():
     Slave_Echo = self.RIGHT_ECHO
 
     self.pulse(Master_Trig)
+    print 'master pulse sent'
     master_distance = self.listen(Master_Echo)
     while GPIO.input(Slave_Echo) == 1:  # Check whether the ECHO is HIGH
       #pulse_end = time.time()
