@@ -6,7 +6,7 @@ snsr = sensor.sensors()
 left_sensor = snsr.forward_distance()[0]
 right_sensor = snsr.forward_distance()[1]
 crusing_speed = 115
-stopping_distance = 15
+stopping_distance = 25
 
 while True:
     left_sensor = snsr.forward_distance()[0]
