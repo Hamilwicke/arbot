@@ -51,28 +51,28 @@ class sensors():
 
   def forward_distance(self):
     #print 'getting LEFT sensor distance'
-    self.left = self.get_distance(self.left_sensor)
+    left = self.get_distance(self.left_sensor)
     time.sleep(.05)
     #print 'getting RIGHT sensor distance'
-    self.right = self.get_distance(self.right_sensor)
+    right = self.get_distance(self.right_sensor)
     time.sleep(.05)
-    return self.left, self.right
+    return left, right
 
 
   def get_multi_sensor_distance(self):
-    Master_Trig = self.LEFT_TRIG
-    Master_Echo = self.LEFT_ECHO
-    Slave_Trig = self.RIGHT_TRIG
-    Slave_Echo = self.RIGHT_ECHO
+    master_trig = self.LEFT_TRIG
+    master_echo = self.LEFT_ECHO
+    slave_trig = self.RIGHT_TRIG
+    slave_echo = self.RIGHT_ECHO
 
-    self.pulse(Master_Trig)
-    #print 'master pulse sent'
-    master_distance = self.listen(Master_Echo)
+    self.pulse(master_trig)
+    # print 'master pulse sent'
+    master_distance = self.listen(master_echo)
 
     time.sleep(.1)
 
-    self.pulse(Slave_Trig)
-    slave_distance = self.listen(Slave_Echo)
+    self.pulse(slave_trig)
+    slave_distance = self.listen(slave_echo)
 
     return master_distance, slave_distance
 
