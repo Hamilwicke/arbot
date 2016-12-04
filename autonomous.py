@@ -9,17 +9,18 @@ crusing_speed = 115
 stopping_distance = 15
 
 while True:
+    print left_sensor,right_sensor
     try:
         print 'Forward'
         arbot.forward(155)
         arbot.forward(crusing_speed)
 
-        if snsr.forward_distance()[0] <= stopping_distance or snsr.forward_distance()[0] == None:
+        if left_sensor <= stopping_distance or left_sensor == None:
             print 'left sensor proximity warning: making right turn'
             arbot.stop(crusing_speed)
             arbot.right_turn(255,1)
             pass
-        if snsr.forward_distance()[1] <= stopping_distance or snsr.forward_distance()[1] == None:
+        if right_sensor <= stopping_distance or right_sensor == None:
             print 'right sensor proximity warning: making left turn'
             arbot.stop(crusing_speed)
             arbot.left_turn(255,1)
