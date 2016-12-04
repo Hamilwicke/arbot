@@ -30,5 +30,5 @@ while True:
             pass
     except KeyboardInterrupt:
         print 'keyboard interrupt received'
-    arbot.turnOffMotors()
+        arbot.turnOffMotors()
 
