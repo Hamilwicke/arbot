@@ -68,16 +68,13 @@ class sensors():
     self.pulse(Master_Trig)
     print 'master pulse sent'
     master_distance = self.listen(Master_Echo)
-    while GPIO.input(Slave_Echo) == 1:  # Check whether the ECHO is HIGH
-      #pulse_end = time.time()
 
+    time.sleep(.1)
 
-    #while time.time() - pulse_end >= .05:
-      time.sleep(.05)
-      self.pulse(Slave_Trig)
-      slave_distance = self.listen(Slave_Echo)
+    self.pulse(Slave_Trig)
+    slave_distance = self.listen(Slave_Echo)
 
-      return master_distance, slave_distance
+    return master_distance, slave_distance
 
 
   def listen(self,ECHO):
