@@ -8,7 +8,10 @@ right_sensor = snsr.forward_distance()[1]
 
 while True:
     try:
+        print 'Forward'
+        arbot.forward(155)
         arbot.forward(115)
+
         if snsr.forward_distance()[0] <= 10 or snsr.forward_distance()[0] == None:
             arbot.right_turn(155,1)
             pass
