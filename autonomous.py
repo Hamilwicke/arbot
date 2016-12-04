@@ -21,5 +21,6 @@ while True:
             arbot.left_turn(155,1)
             pass
     except KeyboardInterrupt:
+        print 'keyboard interrupt received'
         arbot.turnOffMotors()
 
