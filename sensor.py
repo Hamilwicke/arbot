@@ -1,3 +1,6 @@
+import RPi.GPIO as GPIO
+import time
+
 while True:
 
   GPIO.output(TRIG, False)                 #Set TRIG as LOW
