@@ -54,9 +54,9 @@ class sensors():
     left = self.get_distance(self.left_sensor)
     time.sleep(.05)
     print 'getting RIGHT sensor distance'
-    right = self.get_distance(self.right_sensor)
-    time.sleep(.05)
-    return left, right
+    #right = self.get_distance(self.right_sensor)
+    #time.sleep(.05)
+    return left, #right
 
 
   def get_multi_sensor_distance(self):
