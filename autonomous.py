@@ -6,7 +6,7 @@ arbot = driving.motion()
 snsr = sensor.sensors()
 left_sensor = snsr.forward_distance()[0]
 right_sensor = snsr.forward_distance()[1]
-crusing_speed = 255
+crusing_speed = 135
 stopping_distance = 25
 
 while True:
