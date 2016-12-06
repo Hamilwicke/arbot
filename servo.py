@@ -3,7 +3,7 @@ import time
 from servosix import ServoSix
 ss = ServoSix()
 
-for i in range(0,180)
+for i in range(0,180):
     ss.set_servo(2, i)
     time.sleep(.05)
     print i
