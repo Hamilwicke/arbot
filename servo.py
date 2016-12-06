@@ -16,7 +16,7 @@ pwm.start(7)
 
 for i in range(0,180):
 
-    DC = 1./20.*(i)+2.5
+    DC = 1./20.*(i)+2.9
     pwm.ChangeDutyCycle(DC)
     if i == 1:
         time.sleep(4)
