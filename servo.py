@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-GPIO.setmoade(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 servoPin = 4
 GPIO.setup(servoPin, GPIO.OUT)
 pwm = GPIO.PWM(servoPin, 50)
