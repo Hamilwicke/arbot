@@ -7,7 +7,7 @@ GPIO.setup(servoPin, GPIO.OUT)
 pwm = GPIO.PWM(servoPin, 50)
 pwm.start(7)
 for i in range(0,180):
-    DC = 1/18*(i)+2
+    DC = 1./18.*(i)+2
     pwm.ChangeDutyCycle(DC)
     time.sleep(.1)
     print i
