@@ -3,9 +3,9 @@ import time
 from servosix import ServoSix
 ss = ServoSix()
 
-for i in range(0,170):
+for i in range(0,160):
     ss.set_servo(2, i)
-    time.sleep(.05)
+    time.sleep(.01)
     print i
 ss.cleanup()
 
@@ -25,7 +25,7 @@ for i in range(0,180):
     if i == 1:
         time.sleep(1)
     else:
-        time.sleep(.05)
+        time.sleep(.01)
     print i
 
 pwm.stop()
