@@ -21,7 +21,7 @@ while True:
         print 'angle: %s, distance: %s' % (i, dist)
     time.sleep(.05)
 
-    for i in reversed(range(0,180)):
+    for i in reversed(range(10,170)):
         DC = 1./20.*(i)+3
         pwm.ChangeDutyCycle(DC)
         dist = snsr.get_distance((snsr.LEFT_TRIG, snsr.LEFT_ECHO))
