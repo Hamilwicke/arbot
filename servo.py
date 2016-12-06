@@ -9,8 +9,8 @@ pwm.start(7)
 
 
 for i in range(0,20):
-dc = input('pick number 1-20')
-pwm.ChangeDutyCycle(dc)
+    dc = input('pick number 1-20')
+    pwm.ChangeDutyCycle(dc)
 
 
 '''
