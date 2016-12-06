@@ -21,7 +21,7 @@ for i in range(0,180):
     if i == 1:
         time.sleep(4)
     else:
-        time.sleep(.01)
+        time.sleep(.1)
     print i
 
 pwm.stop()
