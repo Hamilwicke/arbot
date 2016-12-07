@@ -15,6 +15,8 @@ class sensors():
     GPIO.setup(self.LEFT_ECHO, GPIO.IN)
     GPIO.setup(self.RIGHT_TRIG, GPIO.OUT)
     GPIO.setup(self.RIGHT_ECHO, GPIO.IN)
+    GPIO.setup(self.RADAR_TRIG, GPIO.OUT)
+    GPIO.setup(self.RADAR_ECHO, GPIO.IN)
 
     self.right_sensor = [self.RIGHT_TRIG, self.RIGHT_ECHO]
     self.left_sensor = [self.LEFT_TRIG, self.LEFT_ECHO]
