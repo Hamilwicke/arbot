@@ -8,6 +8,8 @@ class sensors():
     self.LEFT_ECHO = 12
     self.RIGHT_TRIG = 17
     self.RIGHT_ECHO = 23
+    self.RADAR_TRIG = 20
+    self.RADAR_ECHO = 21
 
     GPIO.setup(self.LEFT_TRIG, GPIO.OUT)
     GPIO.setup(self.LEFT_ECHO, GPIO.IN)

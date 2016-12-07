@@ -17,7 +17,7 @@ while True:
     for i in range(10,160):
         DC = 1. / 20. * (i) + 3
         pwm.ChangeDutyCycle(DC)
-        dist = snsr.get_distance((snsr.LEFT_TRIG,snsr.LEFT_ECHO))
+        dist = snsr.get_distance((snsr.RADAR_TRIG,snsr.RADAR_ECHO))
         print 'angle: %s, distance: %s' % (i, dist)
     time.sleep(.05)
 
