@@ -11,12 +11,12 @@ class sensors():
     self.RADAR_TRIG = 20
     self.RADAR_ECHO = 21
 
-    GPIO.setup(self.LEFT_TRIG, GPIO.OUT)
-    GPIO.setup(self.LEFT_ECHO, GPIO.IN)
-    GPIO.setup(self.RIGHT_TRIG, GPIO.OUT)
-    GPIO.setup(self.RIGHT_ECHO, GPIO.IN)
-    GPIO.setup(self.RADAR_TRIG, GPIO.OUT)
-    GPIO.setup(self.RADAR_ECHO, GPIO.IN)
+    #GPIO.setup(self.LEFT_TRIG, GPIO.OUT)
+    #GPIO.setup(self.LEFT_ECHO, GPIO.IN)
+    #GPIO.setup(self.RIGHT_TRIG, GPIO.OUT)
+    #GPIO.setup(self.RIGHT_ECHO, GPIO.IN)
+    #GPIO.setup(self.RADAR_TRIG, GPIO.OUT)
+    #GPIO.setup(self.RADAR_ECHO, GPIO.IN)
 
     self.right_sensor = [self.RIGHT_TRIG, self.RIGHT_ECHO]
     self.left_sensor = [self.LEFT_TRIG, self.LEFT_ECHO]
@@ -24,7 +24,8 @@ class sensors():
 
 
   def get_distance(self, (TRIG, ECHO)):
-
+    GPIO.setup(TRIG, GPIO.OUT)
+    GPIO.setup(ECHO, GPIO.IN)
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
     time.sleep(.05)
     #print 'triggering pulse'
@@ -48,9 +49,15 @@ class sensors():
     distance = round(distance, 2)            #Round to two decimal points
     #print 'distance = %s'%(distance)
     #if distance > 6 and distance < 200:      #Check whether the distance is within range
+    GPIO.cleanup(TRIG)
+    GPIO.cleanup(ECHO)
+
     return distance - 0.5
     #else:
     #  return 200
+
+
+  def get_distance2(self):
 
   def forward_left(self):
     left = self.get_distance(self.left_sensor)
