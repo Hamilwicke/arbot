@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO                    #Import GPIO library
 import time                                #Import time library
+import random
 GPIO.setmode(GPIO.BCM)                     #Set GPIO pin numbering
 
 class sensors():
@@ -26,8 +27,8 @@ class sensors():
   def get_distance(self, (TRIG, ECHO)):
     GPIO.setup(TRIG, GPIO.OUT)
     GPIO.setup(ECHO, GPIO.IN)
-    GPIO.output(TRIG, False)                 #Set TRIG as LOW
-    time.sleep(.05)
+    GPIO.output(TRIG, False)
+    time.sleep(round(random.uniform(.05, .03), 3))
     #print 'triggering pulse'
     GPIO.output(TRIG, True)                  #Set TRIG as HIGH
     time.sleep(0.00001)                      #Delay of 0.00001 seconds
