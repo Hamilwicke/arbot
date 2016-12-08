@@ -12,12 +12,12 @@ class sensors():
     self.RADAR_TRIG = 20
     self.RADAR_ECHO = 21
 
-    #GPIO.setup(self.LEFT_TRIG, GPIO.OUT)
-    #GPIO.setup(self.LEFT_ECHO, GPIO.IN)
-    #GPIO.setup(self.RIGHT_TRIG, GPIO.OUT)
-    #GPIO.setup(self.RIGHT_ECHO, GPIO.IN)
-    #GPIO.setup(self.RADAR_TRIG, GPIO.OUT)
-    #GPIO.setup(self.RADAR_ECHO, GPIO.IN)
+    GPIO.setup(self.LEFT_TRIG, GPIO.OUT)
+    GPIO.setup(self.LEFT_ECHO, GPIO.IN)
+    GPIO.setup(self.RIGHT_TRIG, GPIO.OUT)
+    GPIO.setup(self.RIGHT_ECHO, GPIO.IN)
+    GPIO.setup(self.RADAR_TRIG, GPIO.OUT)
+    GPIO.setup(self.RADAR_ECHO, GPIO.IN)
 
     self.right_sensor = [self.RIGHT_TRIG, self.RIGHT_ECHO]
     self.left_sensor = [self.LEFT_TRIG, self.LEFT_ECHO]
@@ -85,7 +85,7 @@ class sensors():
 
     self.pulse(master_trig)
     #print 'master pulse sent'
-    master_distance = self.listen(master_echo)
+    master_distance = self.listen(slave_echo)
 
     time.sleep(.1)
 
