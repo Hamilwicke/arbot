@@ -68,9 +68,9 @@ class sensors():
     right = self.get_distance(self.right_sensor)
     return right
 
-  def other_sensor(self):
+  def other_sen(self):
     other = self.get_distance(self.other_sensor)
-    return right
+    return other
 
   def pulse(self, TRIG, ECHO):
     GPIO.output(TRIG, True)
