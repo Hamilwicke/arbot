@@ -43,8 +43,8 @@ class sensors():
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
     distance = ((pulse_end - pulse_start) * 34300) / 2#Get pulse duration to a variable
-    print 'start %.15f' % (pulse_start)
-    print 'pulse end time =%s' % (pulse_end)
+    print 'pulse end time =%.6f' % (pulse_start)
+    print 'pulse end time =%.6f' % (pulse_end)
     #print 'pulse duration = %s'%(pulse_duration)
     #distance = pulse_duration * 17150        #Multiply pulse duration by 17150 to get distance
     distance = round(distance, 2)            #Round to two decimal points
