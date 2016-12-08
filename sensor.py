@@ -49,8 +49,7 @@ class sensors():
     distance = round(distance, 2)            #Round to two decimal points
     #print 'distance = %s'%(distance)
     #if distance > 6 and distance < 200:      #Check whether the distance is within range
-    GPIO.cleanup(TRIG)
-    GPIO.cleanup(ECHO)
+    GPIO.cleanup()
 
     return distance - 0.5
     #else:
