@@ -26,7 +26,7 @@ class sensors():
   def get_distance(self, (TRIG, ECHO)):
     GPIO.setup(TRIG, GPIO.OUT)
     GPIO.setup(ECHO, GPIO.IN)
-    GPIO.output(TRIG, False)                 #Set TRIG as LOW
+    GPIO.output(TRIG, GPIO.LOW)                 #Set TRIG as LOW
     time.sleep(.05)
     #print 'triggering pulse'
     GPIO.output(TRIG, True)                  #Set TRIG as HIGH
