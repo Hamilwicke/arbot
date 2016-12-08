@@ -29,9 +29,8 @@ class sensors():
     GPIO.setup(ECHO, GPIO.IN)
     GPIO.output(TRIG, False)
     time.sleep(round(random.uniform(.05, .03), 3))
-    #print 'triggering pulse'
-    GPIO.output(TRIG, True)                  #Set TRIG as HIGH
-    time.sleep(0.00001)                      #Delay of 0.00001 seconds
+    GPIO.output(TRIG, True)
+    time.sleep(0.00001)
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
 
@@ -54,11 +53,6 @@ class sensors():
     GPIO.cleanup(ECHO)
 
     return distance - 0.5
-    #else:
-    #  return 200
-
-
-  #def get_distance2(self):
 
   def forward_left(self):
     left = self.get_distance(self.left_sensor)
@@ -68,34 +62,11 @@ class sensors():
     right = self.get_distance(self.right_sensor)
     return right
 
-  def forward_distance(self):
-    #print 'getting LEFT sensor distance'
 
-    left = self.get_distance(self.left_sensor)
-    #print 'getting RIGHT sensor distance'
-    right = self.get_distance(self.right_sensor)
-    return left, right
-
-
-  def get_multi_sensor_distance(self):
-    master_trig = self.LEFT_TRIG
-    master_echo = self.LEFT_ECHO
-    slave_trig = self.RIGHT_TRIG
-    slave_echo = self.RIGHT_ECHO
-
-    self.pulse(master_trig)
-    #print 'master pulse sent'
-    master_distance = self.listen(slave_echo)
-
-    time.sleep(.1)
-
-    self.pulse(slave_trig)
-    slave_distance = self.listen(slave_echo)
-
-    return master_distance, slave_distance
-
-
-  def listen(self,ECHO):
+  def pulse(self, TRIG, ECHO):
+    GPIO.output(TRIG, True)
+    time.sleep(0.00001)
+    GPIO.output(TRIG, False)
     while GPIO.input(ECHO) == 0:  # Check whether the ECHO is LOW
       pulse_start = time.time()  # Saves the last known time of LOW pulse
 
@@ -110,11 +81,6 @@ class sensors():
       return distance - 0.5
     else:
       return None
-
-  def pulse(self, TRIG):
-    GPIO.output(TRIG, True)
-    time.sleep(0.00001)
-    GPIO.output(TRIG, False)
 
 
 
