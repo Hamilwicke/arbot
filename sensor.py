@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO                    #Import GPIO library
 import time                                #Import time library
 import random
 GPIO.setmode(GPIO.BCM)                     #Set GPIO pin numbering
+import math
 
 class sensors():
   def __init__(self):
@@ -60,7 +61,25 @@ class sensors():
 
     return distance - 0.5
 
+  def average_distance(self, sensor):
+    reading = None
+    av_distance = []
+    for i in range(1, 6):
+      if reading is None:
+        reading = self.get_distance(sensor)
+      else:
+        reading2 = self.get_distance(sensor)
+        if reading2 <= (reading * 1.1) or reading2 >= reading * .9:
+          reading = reading2
+    av_distance.append(reading)
+    if len(av_distance) > 4:
+      return sum(av_distance) / float(len(av_distance))
+    else:
+      return None
+
+
   def forward_left(self):
+
     left = self.get_distance(self.left_sensor)
     return left
 
@@ -71,6 +90,7 @@ class sensors():
   def other_sen(self):
     other = self.get_distance(self.other_sensor)
     return other
+
 
   def pulse(self, TRIG, ECHO):
     GPIO.output(TRIG, True)
