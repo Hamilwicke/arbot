@@ -5,12 +5,12 @@ import time
 sn = sensor.sensors()
 
 while True:
-    #print '============='
+    print '============='
     print 'left = %s, right = ' % (sn.forward_left()
                                      #,sn.forward_right()
                                      )
     #print sn.get_multi_sensor_distance()
     #print sn.get_multi_sensor_distance()
-    #print '============='
+    print '============='
     time.sleep(.1)
 
