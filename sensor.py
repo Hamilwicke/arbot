@@ -31,7 +31,7 @@ class sensors():
     GPIO.setup(TRIG, GPIO.OUT)
     GPIO.setup(ECHO, GPIO.IN)
     GPIO.output(TRIG, False)
-    time.sleep(round(random.uniform(.05, .03), 3))
+    #time.sleep(round(random.uniform(.05, .03), 3))
     pulse_start = time.time()
     pulse_end = time.time()
     GPIO.output(TRIG, True)                  #Set TRIG as HIGH
