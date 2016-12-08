@@ -24,13 +24,13 @@ class sensors():
 
 
 
-  def get_distance(self, TRIG, ECHO):
+  def get_distance(self, (TRIG, ECHO)):
     GPIO.setup(TRIG, GPIO.OUT)
     GPIO.setup(ECHO, GPIO.IN)
     GPIO.output(TRIG, False)
     time.sleep(round(random.uniform(.05, .03), 3))
-    GPIO.output(TRIG, True)
-    time.sleep(0.00001)
+    GPIO.output(TRIG, True)                  #Set TRIG as HIGH
+    time.sleep(0.00001)                      #Delay of 0.00001 seconds
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
 
