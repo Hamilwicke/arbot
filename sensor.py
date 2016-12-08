@@ -25,7 +25,6 @@ class sensors():
 
     self.right_sensor = [self.RIGHT_TRIG, self.RIGHT_ECHO]
     self.left_sensor = [self.LEFT_TRIG, self.LEFT_ECHO]
-
     self.other_sensor = [self.OTHER_TRIG, self.OTHER_ECHO]
 
   def get_distance(self, (TRIG, ECHO)):
