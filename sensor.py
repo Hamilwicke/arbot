@@ -11,6 +11,8 @@ class sensors():
     self.RIGHT_ECHO = 23
     self.RADAR_TRIG = 20
     self.RADAR_ECHO = 21
+    self.OTHER_TRIG = 19
+    self.OTHER_ECHO = 16
 
     GPIO.setup(self.LEFT_TRIG, GPIO.OUT)
     GPIO.setup(self.LEFT_ECHO, GPIO.IN)
@@ -18,11 +20,13 @@ class sensors():
     GPIO.setup(self.RIGHT_ECHO, GPIO.IN)
     GPIO.setup(self.RADAR_TRIG, GPIO.OUT)
     GPIO.setup(self.RADAR_ECHO, GPIO.IN)
+    GPIO.setup(self.OTHER_TRIG, GPIO.OUT)
+    GPIO.setup(self.OTHER_ECHO, GPIO.IN)
 
     self.right_sensor = [self.RIGHT_TRIG, self.RIGHT_ECHO]
     self.left_sensor = [self.LEFT_TRIG, self.LEFT_ECHO]
 
-
+    self.other_sensor = [self.OTHER_TRIG, self.OTHER_ECHO]
 
   def get_distance(self, (TRIG, ECHO)):
     GPIO.setup(TRIG, GPIO.OUT)
