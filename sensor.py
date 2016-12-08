@@ -35,10 +35,10 @@ class sensors():
 
 
     while GPIO.input(ECHO)==0:               #Check whether the ECHO is LOW
-      pulse_start = time.time()              #Saves the last known time of LOW pulse
+      pulse_start = float(time.time())              #Saves the last known time of LOW pulse
       pass
     while GPIO.input(ECHO)==1:               #Check whether the ECHO is HIGH
-      pulse_end = time.time()                #Saves the last known time of HIGH pulse
+      pulse_end = float(time.time())             #Saves the last known time of HIGH pulse
       pass
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
