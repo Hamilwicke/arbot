@@ -36,9 +36,10 @@ class sensors():
 
     while GPIO.input(ECHO)==0:               #Check whether the ECHO is LOW
       pulse_start = time.time()              #Saves the last known time of LOW pulse
+      pass
     while GPIO.input(ECHO)==1:               #Check whether the ECHO is HIGH
       pulse_end = time.time()                #Saves the last known time of HIGH pulse
-
+      pass
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
     distance = ((pulse_end - pulse_start) * 34300) / 2#Get pulse duration to a variable
