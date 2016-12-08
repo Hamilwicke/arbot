@@ -24,7 +24,7 @@ class sensors():
 
 
 
-  def get_distance(self, (TRIG, ECHO)):
+  def get_distance(self, TRIG, ECHO):
     GPIO.setup(TRIG, GPIO.OUT)
     GPIO.setup(ECHO, GPIO.IN)
     GPIO.output(TRIG, False)
