@@ -6,7 +6,7 @@ sn = sensor.sensors()
 
 while True:
     #print '============='
-    print 'left = %s, right = %s' % (sn.forward_left()
+    print 'left = %s, right = ' % (sn.forward_left()
                                      #,sn.forward_right()
                                      )
     #print sn.get_multi_sensor_distance()
