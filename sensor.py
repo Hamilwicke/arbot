@@ -57,7 +57,7 @@ class sensors():
     #  return 200
 
 
-  def get_distance2(self):
+  #def get_distance2(self):
 
   def forward_left(self):
     left = self.get_distance(self.left_sensor)
