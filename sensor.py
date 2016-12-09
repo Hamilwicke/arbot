@@ -45,7 +45,7 @@ class sensors():
                 return 200
 
         distance = ((pulse_end - pulse_start) * 34300) / 2
-        time.sleep(.01)
+        time.sleep(.1)
 
         return distance
 
