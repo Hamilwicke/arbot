@@ -76,7 +76,8 @@ class sensors():
         else:
           reading = None
         print "reading %s = %s" % (i, reading)
-      av_distance.append(reading)
+      if reading is not None:
+        av_distance.append(reading)
     print av_distance
     if len(av_distance) > 1:
       return sum(av_distance) / float(len(av_distance))
