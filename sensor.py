@@ -33,7 +33,7 @@ class sensors():
         self.radar_sensor = [self.RADAR_TRIG, self.RADAR_ECHO]
 
         # Setup the servo for radar
-
+        self.pwm = GPIO.PWM(self.servoPin, 50)
 
     def get_distance(self, (TRIG, ECHO)):
 
