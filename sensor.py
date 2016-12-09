@@ -89,13 +89,13 @@ class sensors():
 
 
     def all_sensors(self):
-        pwm = GPIO.PWM(self.servoPin, 50)
+
         pwm.start(7)
         while True:
 
             for angle in range(10, 160, 5):
                 DC = 1. / 20. * angle + 3
-                pwm.ChangeDutyCycle(DC)
+                self.pwm.ChangeDutyCycle(DC)
                 radar_distance = self.average_distance(self.radar_sensor)
                 forward_left = self.average_distance(self.left_sensor)
                 forward_right = self.average_distance(self.right_sensor)
@@ -103,7 +103,7 @@ class sensors():
 
             for angle in reversed(range(10, 160, 5)):
                 DC = 1. / 20. * (angle) + 3
-                pwm.ChangeDutyCycle(DC)
+                self.pwm.ChangeDutyCycle(DC)
                 radar_distance = self.average_distance(self.radar_sensor)
                 forward_left = self.average_distance(self.left_sensor)
                 forward_right = self.average_distance(self.right_sensor)
