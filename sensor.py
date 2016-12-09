@@ -94,7 +94,7 @@ class sensors():
         while True:
 
             for angle in range(10, 160, 5):
-                DC = 1. / 20. * (angle) + 3
+                DC = 1. / 20. * angle + 3
                 self.pwm.ChangeDutyCycle(DC)
                 radar_distance = self.average_distance(self.radar_sensor)
                 forward_left = self.average_distance(self.left_sensor)
