@@ -59,19 +59,19 @@ def main():
     while True:
         print 'loop'
         # Send some test
-        lcd_string("Whos the coolest", LCD_LINE_1)
-        lcd_string("EVAAAAAAAAAAAAA?", LCD_LINE_2)
+        lcd_string("Hello Oscar", LCD_LINE_1)
+        lcd_string("", LCD_LINE_2)
 
         time.sleep(3)  # 3 second delay
 
         # Send some text
-        lcd_string("Mike Hardwicke", LCD_LINE_1)
-        lcd_string("Fuckin Brown!!!", LCD_LINE_2)
+        lcd_string("", LCD_LINE_1)
+        lcd_string("", LCD_LINE_2)
 
         time.sleep(3)  # 3 second delay
 
         # Send some text
-        lcd_string("wooooooooooooooo", LCD_LINE_1)
+        lcd_string("", LCD_LINE_1)
         lcd_string("", LCD_LINE_2)
 
         time.sleep(3)
