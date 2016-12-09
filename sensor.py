@@ -73,6 +73,8 @@ class sensors():
         reading2 = self.get_distance(sensor)
         if reading2 <= (reading * 3) or reading2 >= reading * .25:
           reading = reading2
+        else:
+          reading = None
         print "reading %s = %s" % (i, reading)
       av_distance.append(reading)
     print av_distance
