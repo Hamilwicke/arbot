@@ -42,6 +42,7 @@ E_DELAY = 0.0005
 
 
 def main():
+    print 'start'
     # Main program block
     GPIO.setwarnings(False)
     GPIO.setmode(GPIO.BCM)  # Use BCM GPIO numbers
@@ -56,6 +57,7 @@ def main():
     lcd_init()
 
     while True:
+        print 'loop'
         # Send some test
         lcd_string("Rasbperry Pi", LCD_LINE_1)
         lcd_string("16x2 LCD Test", LCD_LINE_2)
