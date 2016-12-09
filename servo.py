@@ -5,7 +5,7 @@ import time
 
 
 GPIO.setmode(GPIO.BCM)
-servoPin = 18
+servoPin = 19
 GPIO.setup(servoPin, GPIO.OUT)
 pwm = GPIO.PWM(servoPin, 50)
 pwm.start(7)
