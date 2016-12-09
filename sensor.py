@@ -35,31 +35,35 @@ class sensors():
     #time.sleep(round(random.uniform(.05, .03), 3))
     pulse_start = time.time()
     pulse_end = time.time()
-    GPIO.output(TRIG, True)                  #Set TRIG as HIGH
-    time.sleep(0.00001)                      #Delay of 0.00001 seconds
+    GPIO.output(TRIG, True)
+    time.sleep(0.00001)
+    GPIO.output(TRIG, False)
+
+
+    while GPIO.input(ECHO)==0:
+      pulse_start = float(time.time())
+      pass
+    while GPIO.input(ECHO)==1:
+      pulse_end = float(time.time())
+      if time.time() - pulse_start < 0.00587:
+        return 200
+      else:
+        return round(((pulse_end - pulse_start) * 34300) / 2, 2)
+
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
-
-    while GPIO.input(ECHO)==0:               #Check whether the ECHO is LOW
-      pulse_start = float(time.time())              #Saves the last known time of LOW pulse
-      pass
-    while GPIO.input(ECHO)==1:               #Check whether the ECHO is HIGH
-      pulse_end = float(time.time())             #Saves the last known time of HIGH pulse
-      pass
-    GPIO.output(TRIG, False)                 #Set TRIG as LOW
-
-    distance = ((pulse_end - pulse_start) * 34300) / 2#Get pulse duration to a variable
+    #Get pulse duration to a variable
     #print 'pulse end time =%.6f' % (pulse_start)
     #print 'pulse end time =%.6f' % (pulse_end)
     #print 'pulse duration = %s'%(pulse_duration)
     #distance = pulse_duration * 17150        #Multiply pulse duration by 17150 to get distance
-    distance = round(distance, 2)            #Round to two decimal points
+    #distance = round(distance, 2)            #Round to two decimal points
     #print 'distance = %s'%(distance)
     #if distance > 6 and distance < 200:      #Check whether the distance is within range
-    GPIO.cleanup(TRIG)
-    GPIO.cleanup(ECHO)
+    #GPIO.cleanup(TRIG)
+    #GPIO.cleanup(ECHO)
 
-    return distance - 0.5
+    #return distance - 0.5
 
   def average_distance(self, sensor):
     sampled_distance = lambda n: sum([self.get_distance(sensor) for n in range(n)]) / float(n)
