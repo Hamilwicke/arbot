@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO                    # Import GPIO library
 import time                                # Import time library
 
-GPIO.setmode(GPIO.BCM)                     # Set GPIO pin numbering
+#GPIO.setmode(GPIO.BCM)                     # Set GPIO pin numbering
 
 
 class sensors():
