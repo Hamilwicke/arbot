@@ -40,9 +40,9 @@ class sensors():
             pulse_start = time.time()
         while GPIO.input(ECHO) == 1:
             pulse_end = time.time()
-            if pulse_end - pulse_start > 0.187:
-                print 'too long'
-                return 200
+            #if pulse_end - pulse_start > 0.187:
+                #print 'too long'
+                #return 200
 
         distance = ((pulse_end - pulse_start) * 34300) / 2
         time.sleep(.1)
