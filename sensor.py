@@ -62,6 +62,11 @@ class sensors():
     return distance - 0.5
 
   def average_distance(self, sensor):
+    sampled_distance = lambda n: sum([self.get_distance(sensor) for n in range(n)]) / float(n)
+    distance = sampled_distance(10)
+    return distance
+
+    """
     reading = None
     av_distance = []
     for i in range(1, 8):
@@ -82,7 +87,7 @@ class sensors():
       return sum(av_distance) / float(len(av_distance))
     else:
       return None
-
+    """
 
   def forward_left(self):
 
