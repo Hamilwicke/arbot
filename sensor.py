@@ -40,7 +40,7 @@ class sensors():
             pulse_start = time.time()
         while GPIO.input(ECHO) == 1:
             pulse_end = time.time()
-            if pulse_end - pulse_start > 0.187:
+            if pulse_end - pulse_start > 0.0174:
                 print 'too long'
                 return 200
 
