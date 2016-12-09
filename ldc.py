@@ -62,25 +62,25 @@ def main():
         lcd_string("Hello Oscar", LCD_LINE_1)
         lcd_string("", LCD_LINE_2)
 
-        time.sleep(3)  # 3 second delay
+        #time.sleep(3)  # 3 second delay
 
         # Send some text
-        lcd_string("", LCD_LINE_1)
-        lcd_string("", LCD_LINE_2)
+        #lcd_string("", LCD_LINE_1)
+        #lcd_string("", LCD_LINE_2)
 
-        time.sleep(3)  # 3 second delay
-
-        # Send some text
-        lcd_string("", LCD_LINE_1)
-        lcd_string("", LCD_LINE_2)
-
-        time.sleep(3)
+        #time.sleep(3)  # 3 second delay
 
         # Send some text
-        lcd_string("", LCD_LINE_1)
-        lcd_string("", LCD_LINE_2)
+        #lcd_string("", LCD_LINE_1)
+        #lcd_string("", LCD_LINE_2)
 
-        time.sleep(3)
+        #time.sleep(3)
+
+        # Send some text
+        #lcd_string("", LCD_LINE_1)
+        #lcd_string("", LCD_LINE_2)
+
+        #time.sleep(3)
 
 
 def lcd_init():
