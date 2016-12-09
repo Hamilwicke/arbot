@@ -48,7 +48,7 @@ class sensors():
       if time.time() - pulse_start < 0.00587:
         return 200
       else:
-        return round(((pulse_end - pulse_start) * 34300) / 2, 2)
+        return ((pulse_end - pulse_start) * 34300) / 2
 
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
@@ -57,7 +57,7 @@ class sensors():
     #print 'pulse end time =%.6f' % (pulse_end)
     #print 'pulse duration = %s'%(pulse_duration)
     #distance = pulse_duration * 17150        #Multiply pulse duration by 17150 to get distance
-    #distance = round(distance, 2)            #Round to two decimal points
+    #b8distance = round(distance, 2)            #Round to two decimal points
     #print 'distance = %s'%(distance)
     #if distance > 6 and distance < 200:      #Check whether the distance is within range
     #GPIO.cleanup(TRIG)
