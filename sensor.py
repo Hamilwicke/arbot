@@ -64,11 +64,11 @@ class sensors():
   def average_distance(self, sensor):
     reading = None
     av_distance = []
-    for i in range(1, 6):
+    for i in range(1, 8):
       print i
       if reading is None:
         reading = self.get_distance(sensor)
-        print "1st reading %s" % reading
+        print "reading %s = %s" % (i, reading)
       else:
         reading2 = self.get_distance(sensor)
         if reading2 <= (reading * 3) or reading2 >= reading * .25:
