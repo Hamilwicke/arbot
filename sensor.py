@@ -12,8 +12,6 @@ class sensors():
         self.RIGHT_ECHO = 16
         self.RADAR_TRIG = 20
         self.RADAR_ECHO = 21
-        self.OTHER_TRIG = 19
-        self.OTHER_ECHO = 16
 
         GPIO.setup(self.LEFT_TRIG, GPIO.OUT)
         GPIO.setup(self.LEFT_ECHO, GPIO.IN)
@@ -21,12 +19,10 @@ class sensors():
         GPIO.setup(self.RIGHT_ECHO, GPIO.IN)
         GPIO.setup(self.RADAR_TRIG, GPIO.OUT)
         GPIO.setup(self.RADAR_ECHO, GPIO.IN)
-        GPIO.setup(self.OTHER_TRIG, GPIO.OUT)
-        GPIO.setup(self.OTHER_ECHO, GPIO.IN)
 
         self.right_sensor = [self.RIGHT_TRIG, self.RIGHT_ECHO]
         self.left_sensor = [self.LEFT_TRIG, self.LEFT_ECHO]
-        self.other_sensor = [self.OTHER_TRIG, self.OTHER_ECHO]
+        self.radar_sensor = [self.RADAR_TRIG, self.RADAR_ECHO]
 
     def get_distance(self, (TRIG, ECHO)):
 
@@ -44,20 +40,18 @@ class sensors():
                 time.sleep(.01)
                 return 200
 
-        #print 'pulse_end (%s) - pulse_start (%s) = %s'  % (pulse_end,pulse_start, pulse_end-pulse_start)
+        # print 'pulse_end (%s) - pulse_start (%s) = %s'  % (pulse_end,pulse_start, pulse_end-pulse_start)
 
         distance = ((pulse_end - pulse_start) * 34300) / 2
-
 
         time.sleep(.01)
         return distance
 
-
-
-    def average_distance(self, sensor):
-        sampled_distance = lambda n: sum([self.get_distance(sensor) for n in range(n)]) / float(n)
-        distance = sampled_distance(10)
-        return distance
+    def average_distance(self, (snsrs)):
+        for sensor in snsrs:
+            sampled_distance = lambda n: sum([self.get_distance(sensor) for n in range(n)]) / float(n)
+            distance = sampled_distance(10)
+            return distance
 
     def forward_left(self):
         left = self.get_distance(self.left_sensor)
@@ -68,7 +62,7 @@ class sensors():
         return right
 
     def other_sen(self):
-        other = self.get_distance(self.other_sensor)
+        other = self.get_distance(self.radar_sensor)
         return other
 
     def pulse(self, TRIG, ECHO):
