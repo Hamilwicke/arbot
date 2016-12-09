@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from servosix import ServoSix
+
 ss = ServoSix()
 
 for i in range(0,160):

@@ -1,19 +1,26 @@
 import driving
 import sensor
 import time
+import threading
+from threading import Thread
 
 arbot = driving.motion()
 snsr = sensor.sensors()
-left_sensor = snsr.forward_distance()[0]
-right_sensor = snsr.forward_distance()[1]
 crusing_speed = 135
 stopping_distance = 25
+
+Thread(target=snsr.forward_left()).start()
+Thread(target=snsr.forward_right).start()
+Thread(target=snsr.radar).start()
+
 
 while True:
 
     try:
-        left_sensor = snsr.forward_distance()[0]
-        right_sensor = snsr.forward_distance()[1]
+        left_sensor = snsr.forward_left()
+        right_sensor = snsr.forward_right()
+
+
         print left_sensor, right_sensor
         arbot.forward(155)
         arbot.forward(crusing_speed)
