@@ -65,7 +65,6 @@ class sensors():
     reading = None
     av_distance = []
     for i in range(1, 8):
-      print i
       if reading is None:
         reading = self.get_distance(sensor)
         print "reading %s = %s" % (i, reading)
