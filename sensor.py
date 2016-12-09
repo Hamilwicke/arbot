@@ -43,9 +43,9 @@ class sensors():
             #if pulse_end - pulse_start > 0.187:
                 #print 'too long'
                 #return 200
-
+        print 'pulse_end (%s) - pulse_start (%s) = %s'  % (pulse_end,pulse_start, pulse_end-pulse_start)
         distance = ((pulse_end - pulse_start) * 34300) / 2
-        time.sleep(.1)
+        time.sleep(1)
 
         return distance
 
