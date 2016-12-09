@@ -71,7 +71,7 @@ class sensors():
         print "reading %s = %s" % (i, reading)
       else:
         reading2 = self.get_distance(sensor)
-        if reading2 >= (reading * 3) or reading2 <= reading * .25:
+        if reading2 <= (reading * 3) or reading2 >= reading * .25:
           reading = reading2
         else:
           reading = None
