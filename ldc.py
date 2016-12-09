@@ -59,26 +59,26 @@ def main():
     while True:
         print 'loop'
         # Send some test
-        lcd_string("Rasbperry Pi", LCD_LINE_1)
-        lcd_string("16x2 LCD Test", LCD_LINE_2)
+        lcd_string("Whos the coolest", LCD_LINE_1)
+        lcd_string("EVAAAAAAAAAAAAA?", LCD_LINE_2)
 
         time.sleep(3)  # 3 second delay
 
         # Send some text
-        lcd_string("1234567890123456", LCD_LINE_1)
-        lcd_string("abcdefghijklmnop", LCD_LINE_2)
+        lcd_string("Mike Hardwicke", LCD_LINE_1)
+        lcd_string("Fuckin Brown!!!", LCD_LINE_2)
 
         time.sleep(3)  # 3 second delay
 
         # Send some text
-        lcd_string("RaspberryPi-spy", LCD_LINE_1)
-        lcd_string(".co.uk", LCD_LINE_2)
+        lcd_string("wooooooooooooooo", LCD_LINE_1)
+        lcd_string("", LCD_LINE_2)
 
         time.sleep(3)
 
         # Send some text
-        lcd_string("Follow me on", LCD_LINE_1)
-        lcd_string("Twitter @RPiSpy", LCD_LINE_2)
+        lcd_string("", LCD_LINE_1)
+        lcd_string("", LCD_LINE_2)
 
         time.sleep(3)
 
