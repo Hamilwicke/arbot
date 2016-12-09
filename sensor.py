@@ -66,6 +66,7 @@ class sensors():
     distance = sampled_distance(10)
     return distance
 
+
     """
     reading = None
     av_distance = []
