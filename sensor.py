@@ -6,10 +6,10 @@ GPIO.setmode(GPIO.BCM)                     # Set GPIO pin numbering
 
 class sensors():
     def __init__(self):
-        self.LEFT_TRIG = 5
+        self.LEFT_TRIG = 6
         self.LEFT_ECHO = 12
-        self.RIGHT_TRIG = 17
-        self.RIGHT_ECHO = 23
+        self.RIGHT_TRIG = 13
+        self.RIGHT_ECHO = 16
         self.RADAR_TRIG = 20
         self.RADAR_ECHO = 21
         self.OTHER_TRIG = 19
@@ -40,9 +40,9 @@ class sensors():
             pulse_start = time.time()
         while GPIO.input(ECHO) == 1:
             pulse_end = time.time()
-            #if pulse_end - pulse_start > 0.187:
-                #print 'too long'
-                #return 200
+            if pulse_end - pulse_start > 0.187:
+                print 'too long'
+                return 200
 
         #print 'pulse_end (%s) - pulse_start (%s) = %s'  % (pulse_end,pulse_start, pulse_end-pulse_start)
 
