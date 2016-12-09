@@ -30,8 +30,6 @@ class sensors():
 
   def get_distance(self, (TRIG, ECHO)):
 
-    #GPIO.output(TRIG, False)
-    #time.sleep(round(random.uniform(.05, .03), 3))
     pulse_start = time.time()
     pulse_end = time.time()
     GPIO.output(TRIG, True)
@@ -49,21 +47,6 @@ class sensors():
     time.sleep(.01)
 
     return distance
-
-    #GPIO.output(TRIG, False)                 #Set TRIG as LOW
-
-    #Get pulse duration to a variable
-    #print 'pulse end time =%.6f' % (pulse_start)
-    #print 'pulse end time =%.6f' % (pulse_end)
-    #print 'pulse duration = %s'%(pulse_duration)
-    #distance = pulse_duration * 17150        #Multiply pulse duration by 17150 to get distance
-    #b8distance = round(distance, 2)            #Round to two decimal points
-    #print 'distance = %s'%(distance)
-    #if distance > 6 and distance < 200:      #Check whether the distance is within range
-    #GPIO.cleanup(TRIG)
-    #GPIO.cleanup(ECHO)
-
-    #return distance - 0.5
 
   def average_distance(self, sensor):
     sampled_distance = lambda n: sum([self.get_distance(sensor) for n in range(n)]) / float(n)
