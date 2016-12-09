@@ -46,9 +46,9 @@ class sensors():
         return 200
 
     distance = ((pulse_end - pulse_start) * 34300) / 2
+    time.sleep(.01)
 
     return distance
-
 
     #GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
