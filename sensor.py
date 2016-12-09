@@ -40,7 +40,7 @@ class sensors():
             pulse_start = time.time()
         while GPIO.input(ECHO) == 1:
             pulse_end = time.time()
-            if  pulse_end - pulse_start > 0.0187:
+            if pulse_end - pulse_start > 0.0187:
                 print 'too long'
                 return 200
 
@@ -54,30 +54,6 @@ class sensors():
         distance = sampled_distance(1)
         return distance
 
-
-	"""
-	reading = None
-	av_distance = []
-	for i in range(1, 8):
-	  if reading is None:
-		reading = self.get_distance(sensor)
-		print "reading %s = %s" % (i, reading)
-	  else:
-		reading2 = self.get_distance(sensor)
-		if reading2 <= (reading * 3) or reading2 >= reading * .25:
-		  reading = reading2
-		else:
-		  reading = None
-		print "reading %s = %s" % (i, reading)
-	  if reading is not None:
-		av_distance.append(reading)
-	print av_distance
-	if len(av_distance) > 1:
-	  return sum(av_distance) / float(len(av_distance))
-	else:
-	  return None
-	"""
-
     def forward_left(self):
         left = self.get_distance(self.left_sensor)
         return left
@@ -89,7 +65,6 @@ class sensors():
     def other_sen(self):
         other = self.get_distance(self.other_sensor)
         return other
-
 
     def pulse(self, TRIG, ECHO):
         GPIO.output(TRIG, True)
