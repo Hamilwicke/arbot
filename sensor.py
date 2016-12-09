@@ -47,11 +47,10 @@ class sensors():
         time.sleep(.01)
         return distance
 
-    def average_distance(self, (snsrs)):
-        for sensor in snsrs:
-            sampled_distance = lambda n: sum([self.get_distance(sensor) for n in range(n)]) / float(n)
-            distance = sampled_distance(10)
-            return distance
+    def average_distance(self, sensor):
+        sampled_distance = lambda n: sum([self.get_distance(sensor) for n in range(n)]) / float(n)
+        distance = sampled_distance(10)
+        return distance
 
     def forward_left(self):
         left = self.get_distance(self.left_sensor)
