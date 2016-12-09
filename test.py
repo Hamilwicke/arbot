@@ -5,5 +5,5 @@ import time
 sn = sensor.sensors()
 
 while True:
-    print sn.radar()
+    print sn.all_sensors()
 
