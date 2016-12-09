@@ -39,16 +39,17 @@ class sensors():
     time.sleep(0.00001)
     GPIO.output(TRIG, False)
 
-
-    while GPIO.input(ECHO)==0:
-      pulse_start = float(time.time())
-      pass
-    while GPIO.input(ECHO)==1:
-      pulse_end = float(time.time())
-      if time.time() - pulse_start < 0.00587:
+    while GPIO.input(ECHO) == 0:
+      pulse_start = time.time()
+    while GPIO.input(ECHO) == 1:
+      pulse_end = time.time()
+      if  pulse_end - pulse_start < 0.00587:
         return 200
-      else:
-        return ((pulse_end - pulse_start) * 34300) / 2
+
+    distance = ((pulse_end - pulse_start) * 34300) / 2
+
+    return distance
+
 
     GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
