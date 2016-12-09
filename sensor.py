@@ -71,7 +71,7 @@ class sensors():
         print "1st reading %s" % reading
       else:
         reading2 = self.get_distance(sensor)
-        if reading2 <= (reading * 1.1) or reading2 >= reading * .9:
+        if reading2 <= (reading * 3) or reading2 >= reading * .25:
           reading = reading2
         print "reading %s = %s" % (i, reading)
       av_distance.append(reading)
