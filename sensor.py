@@ -29,9 +29,8 @@ class sensors():
     self.other_sensor = [self.OTHER_TRIG, self.OTHER_ECHO]
 
   def get_distance(self, (TRIG, ECHO)):
-    GPIO.setup(TRIG, GPIO.OUT)
-    GPIO.setup(ECHO, GPIO.IN)
-    GPIO.output(TRIG, False)
+
+    #GPIO.output(TRIG, False)
     #time.sleep(round(random.uniform(.05, .03), 3))
     pulse_start = time.time()
     pulse_end = time.time()
@@ -51,7 +50,7 @@ class sensors():
     return distance
 
 
-    GPIO.output(TRIG, False)                 #Set TRIG as LOW
+    #GPIO.output(TRIG, False)                 #Set TRIG as LOW
 
     #Get pulse duration to a variable
     #print 'pulse end time =%.6f' % (pulse_start)
