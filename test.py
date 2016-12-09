@@ -10,5 +10,5 @@ while True:
     #print sn.get_multi_sensor_distance()
     #print sn.get_multi_sensor_distance()
     #print '============='
-    time.sleep(.15)
+    #time.sleep(.)
 
