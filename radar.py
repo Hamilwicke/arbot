@@ -17,20 +17,20 @@ while True:
     for i in range(10,160,5):
         DC = 1. / 20. * (i) + 3
         pwm.ChangeDutyCycle(DC)
-        dist = snsr.get_distance((snsr.RADAR_TRIG,snsr.RADAR_ECHO))
+        dist = snsr.average_distance((snsr.RADAR_TRIG,snsr.RADAR_ECHO))
         print 'angle: %s, distance: %s' % (i, dist)
         time.sleep(.05)
 
     for i in reversed(range(10,160,5)):
         DC = 1./20.*(i)+3
         pwm.ChangeDutyCycle(DC)
-        dist = snsr.get_distance((snsr.RADAR_TRIG, snsr.RADAR_ECHO))
+        dist = snsr.average_distance((snsr.RADAR_TRIG, snsr.RADAR_ECHO))
         print 'angle: %s, distance: %s' % (i, dist)
         time.sleep(.05)
 
-'''
 
-    def collision_reading(self, theta, hyp):
+'''
+    def collision_reading(theta, hyp):
         if theta > 90:
             angle = 180 - theta
         else:
@@ -50,7 +50,7 @@ while True:
                 return #soft left turn
             if collision_reading <=10:
                 return #hard left turn
-
 '''
+
 pwm.stop()
 GPIO.cleanup()
