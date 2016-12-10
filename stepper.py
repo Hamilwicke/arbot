@@ -10,59 +10,54 @@ GPIO.setmode(GPIO.BCM)
 # Physical pins 11,15,16,18
 # GPIO17,GPIO22,GPIO23,GPIO24
 StepPins = [17, 18, 27, 22]
+coil_A_1_pin = 17
+coil_A_2_pin = 18
+coil_B_1_pin = 27
+coil_B_2_pin = 22
 
 # Set all pins as output
-for pin in StepPins:
-    print "Setup pins"
-    GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, False)
+GPIO.setup(coil_A_1_pin, GPIO.OUT)
+GPIO.setup(coil_A_2_pin, GPIO.OUT)
+GPIO.setup(coil_B_1_pin, GPIO.OUT)
+GPIO.setup(coil_B_2_pin, GPIO.OUT)
 
 # Define advanced sequence
 # as shown in manufacturers datasheet
-Seq = [[1, 0, 0, 1],
-       [1, 0, 0, 0],
-       [1, 1, 0, 0],
-       [0, 1, 0, 0],
-       [0, 1, 1, 0],
-       [0, 0, 1, 0],
-       [0, 0, 1, 1],
-       [0, 0, 0, 1]]
 
-StepCount = len(Seq)
-StepDir = 1  # Set to 1 or 2 for clockwise
-# Set to -1 or -2 for anti-clockwise
+def forward(delay, steps):
+    for i in range(0, steps):
+        setStep(1, 0, 1, 0)
+        time.sleep(delay)
+        setStep(0, 1, 1, 0)
+        time.sleep(delay)
+        setStep(0, 1, 0, 1)
+        time.sleep(delay)
+        setStep(1, 0, 0, 1)
+        time.sleep(delay)
 
-# Read wait time from command line
-if len(sys.argv) > 1:
-    WaitTime = int(sys.argv[1]) / float(1000)
-else:
-    WaitTime = 10 / float(1000)
 
-# Initialise variables
-StepCounter = 0
+def backwards(delay, steps):
+    for i in range(0, steps):
+        setStep(1, 0, 0, 1)
+        time.sleep(delay)
+        setStep(0, 1, 0, 1)
+        time.sleep(delay)
+        setStep(0, 1, 1, 0)
+        time.sleep(delay)
+        setStep(1, 0, 1, 0)
+        time.sleep(delay)
 
-# Start main loop
+
+def setStep(w1, w2, w3, w4):
+    GPIO.output(coil_A_1_pin, w1)
+    GPIO.output(coil_A_2_pin, w2)
+    GPIO.output(coil_B_1_pin, w3)
+    GPIO.output(coil_B_2_pin, w4)
+
+
 while True:
-
-    print StepCounter,
-    print Seq[StepCounter]
-
-    for pin in range(0, 4):
-        xpin = StepPins[pin]  # Get GPIO
-        if Seq[StepCounter][pin] != 0:
-            print " Enable GPIO %i" % (xpin)
-            GPIO.output(xpin, True)
-        else:
-            GPIO.output(xpin, False)
-
-    StepCounter += StepDir
-
-    # If we reach the end of the sequence
-    # start again
-    if (StepCounter >= StepCount):
-        StepCounter = 0
-    if (StepCounter < 0):
-        StepCounter = StepCount + StepDir
-
-    # Wait before moving on
-    time.sleep(WaitTime)
+    delay = raw_input("Delay between steps (milliseconds)?")
+    steps = raw_input("How many steps forward? ")
+    forward(int(delay) / 1000.0, int(steps))
+    steps = raw_input("How many steps backwards? ")
+    backwards(int(delay) / 1000.0, int(steps))
