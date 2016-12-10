@@ -58,7 +58,7 @@ class sensors():
 
     def average_distance(self, sensor):
         sampled_distance = lambda n: sum([self.get_distance(sensor) for n in range(n)]) / float(n)
-        distance = sampled_distance(10)
+        distance = sampled_distance(100)
         return distance
 
     def forward_left(self):
