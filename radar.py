@@ -19,14 +19,14 @@ while True:
         pwm.ChangeDutyCycle(DC)
         dist = snsr.average_distance((snsr.RADAR_TRIG,snsr.RADAR_ECHO))
         print 'angle: %s, distance: %s' % (i, dist)
-        #time.sleep(.05)
+        time.sleep(.05)
 
     for i in reversed(range(10,160,5)):
         DC = 1./20.*(i)+3
         pwm.ChangeDutyCycle(DC)
         dist = snsr.average_distance((snsr.RADAR_TRIG, snsr.RADAR_ECHO))
         print 'angle: %s, distance: %s' % (i, dist)
-        #time.sleep(.05)
+        time.sleep(.05)
 
 
 '''
