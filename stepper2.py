@@ -1,70 +1,151 @@
-#!/usr/bin/python
-# Import required libraries
-import sys
-import time
+from time import sleep
 import RPi.GPIO as GPIO
 
-# Use BCM GPIO references
-# instead of physical pin numbers
-GPIO.setmode(GPIO.BCM)
+class Motor(object):
+    def __init__(self, pins, mode=3):
+        """Initialise the motor object.
 
-# Define GPIO signals to use
-# Physical pins 11,15,16,18
-# GPIO17,GPIO22,GPIO23,GPIO24
-StepPins = [17, 22, 23, 24]
+        pins -- a list of 4 integers referring to the GPIO pins that the IN1, IN2
+                IN3 and IN4 pins of the ULN2003 board are wired to
+        mode -- the stepping mode to use:
+                1: wave drive (not yet implemented)
+                2: full step drive
+                3: half step drive (default)
 
-# Set all pins as output
-for pin in StepPins:
-    print "Setup pins"
-    GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, False)
+        """
+        self.P1 = pins[17]
+        self.P2 = pins[18]
+        self.P3 = pins[27]
+        self.P4 = pins[22]
+        self.mode = mode
+        self.deg_per_step = 5.625 / 64  # for half-step drive (mode 3)
+        self.steps_per_rev = int(360 / self.deg_per_step)  # 4096
+        self.step_angle = 0  # Assume the way it is pointing is zero degrees
+        for p in pins:
+            GPIO.setup(p, GPIO.OUT)
+            GPIO.output(p, 0)
 
-# Define advanced sequence
-# as shown in manufacturers datasheet
-Seq = [[1, 0, 0, 1],
-       [1, 0, 0, 0],
-       [1, 1, 0, 0],
-       [0, 1, 0, 0],
-       [0, 1, 1, 0],
-       [0, 0, 1, 0],
-       [0, 0, 1, 1],
-       [0, 0, 0, 1]]
+    def _set_rpm(self, rpm):
+        """Set the turn speed in RPM."""
+        self._rpm = rpm
+        # T is the amount of time to stop between signals
+        self._T = (60.0 / rpm) / self.steps_per_rev
 
-StepCount = len(Seq)
-StepDir = 1  # Set to 1 or 2 for clockwise
-# Set to -1 or -2 for anti-clockwise
+    # This means you can set "rpm" as if it is an attribute and
+    # behind the scenes it sets the _T attribute
+    rpm = property(lambda self: self._rpm, _set_rpm)
 
-# Read wait time from command line
-if len(sys.argv) > 1:
-    WaitTime = int(sys.argv[1]) / float(1000)
-else:
-    WaitTime = 10 / float(1000)
-
-# Initialise variables
-StepCounter = 0
-
-# Start main loop
-while True:
-
-    print StepCounter,
-    print Seq[StepCounter]
-
-    for pin in range(0, 4):
-        xpin = StepPins[pin]  # Get GPIO
-        if Seq[StepCounter][pin] != 0:
-            print " Enable GPIO %i" % (xpin)
-            GPIO.output(xpin, True)
+    def move_to(self, angle):
+        """Take the shortest route to a particular angle (degrees)."""
+        # Make sure there is a 1:1 mapping between angle and stepper angle
+        target_step_angle = 8 * (int(angle / self.deg_per_step) / 8)
+        steps = target_step_angle - self.step_angle
+        steps = (steps % self.steps_per_rev)
+        if steps > self.steps_per_rev / 2:
+            steps -= self.steps_per_rev
+            print "moving " + `steps` + " steps"
+            if self.mode == 2:
+                self._move_acw_2(-steps / 8)
+            else:
+                self._move_acw_3(-steps / 8)
         else:
-            GPIO.output(xpin, False)
+            print "moving " + `steps` + " steps"
+            if self.mode == 2:
+                self._move_cw_2(steps / 8)
+            else:
+                self._move_cw_3(steps / 8)
+        self.step_angle = target_step_angle
 
-    StepCounter += StepDir
+    def __clear(self):
+        GPIO.output(self.P1, 0)
+        GPIO.output(self.P2, 0)
+        GPIO.output(self.P3, 0)
+        GPIO.output(self.P4, 0)
 
-    # If we reach the end of the sequence
-    # start again
-    if (StepCounter >= StepCount):
-        StepCounter = 0
-    if (StepCounter < 0):
-        StepCounter = StepCount + StepDir
+    def _move_acw_2(self, big_steps):
+        self.__clear()
+        for i in range(big_steps):
+            GPIO.output(self.P3, 0)
+            GPIO.output(self.P1, 1)
+            sleep(self._T * 2)
+            GPIO.output(self.P2, 0)
+            GPIO.output(self.P4, 1)
+            sleep(self._T * 2)
+            GPIO.output(self.P1, 0)
+            GPIO.output(self.P3, 1)
+            sleep(self._T * 2)
+            GPIO.output(self.P4, 0)
+            GPIO.output(self.P2, 1)
+            sleep(self._T * 2)
 
-    # Wait before moving on
-    time.sleep(WaitTime)
+    def _move_cw_2(self, big_steps):
+        self.__clear()
+        for i in range(big_steps):
+            GPIO.output(self.P4, 0)
+            GPIO.output(self.P2, 1)
+            sleep(self._T * 2)
+            GPIO.output(self.P1, 0)
+            GPIO.output(self.P3, 1)
+            sleep(self._T * 2)
+            GPIO.output(self.P2, 0)
+            GPIO.output(self.P4, 1)
+            sleep(self._T * 2)
+            GPIO.output(self.P3, 0)
+            GPIO.output(self.P1, 1)
+            sleep(self._T * 2)
+
+    def _move_acw_3(self, big_steps):
+        self.__clear()
+        for i in range(big_steps):
+            GPIO.output(self.P1, 0)
+            sleep(self._T)
+            GPIO.output(self.P3, 1)
+            sleep(self._T)
+            GPIO.output(self.P4, 0)
+            sleep(self._T)
+            GPIO.output(self.P2, 1)
+            sleep(self._T)
+            GPIO.output(self.P3, 0)
+            sleep(self._T)
+            GPIO.output(self.P1, 1)
+            sleep(self._T)
+            GPIO.output(self.P2, 0)
+            sleep(self._T)
+            GPIO.output(self.P4, 1)
+            sleep(self._T)
+
+    def _move_cw_3(self, big_steps):
+        self.__clear()
+        for i in range(big_steps):
+            GPIO.output(self.P3, 0)
+            sleep(self._T)
+            GPIO.output(self.P1, 1)
+            sleep(self._T)
+            GPIO.output(self.P4, 0)
+            sleep(self._T)
+            GPIO.output(self.P2, 1)
+            sleep(self._T)
+            GPIO.output(self.P1, 0)
+            sleep(self._T)
+            GPIO.output(self.P3, 1)
+            sleep(self._T)
+            GPIO.output(self.P2, 0)
+            sleep(self._T)
+            GPIO.output(self.P4, 1)
+            sleep(self._T)
+
+
+if __name__ == "__main__":
+    GPIO.setmode(GPIO.BOARD)
+    m = Motor([18,22,24,26])
+    m.rpm = 5
+    print "Pause in seconds: " + `m._T`
+    m.move_to(90)
+    sleep(1)
+    m.move_to(0)
+    sleep(1)
+    m.mode = 2
+    m.move_to(90)
+    sleep(1)
+    m.move_to(0)
+    GPIO.cleanup()
