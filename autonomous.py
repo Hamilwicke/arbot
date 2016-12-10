@@ -9,9 +9,9 @@ snsr = sensor.sensors()
 crusing_speed = 135
 stopping_distance = 25
 
-Thread(target=snsr.forward_left()).start()
-Thread(target=snsr.forward_right).start()
-Thread(target=snsr.radar).start()
+#Thread(target=snsr.forward_left()).start()
+#Thread(target=snsr.forward_right).start()
+#Thread(target=snsr.radar).start()
 
 
 while True:
