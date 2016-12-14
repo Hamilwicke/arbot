@@ -7,8 +7,9 @@ import atexit
 class motion():
     def __init__(self):
         self.mh = Adafruit_MotorHAT(addr=0x60)
-        self.rightFront = self.mh.getMotor(1)
-        self.rightRear = self.mh.getMotor(3)
+        self.rightFront
+        ,
+        self.mh.getMotor(3)
         self.leftFront = self.mh.getMotor(2)
         self.leftRear = self.mh.getMotor(4)
 

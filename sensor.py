@@ -10,13 +10,16 @@ class sensors():
         GPIO.setmode(GPIO.BCM)
 
         # Assign all pins
-        self.LEFT_TRIG = 6
-        self.LEFT_ECHO = 12
-        self.RIGHT_TRIG = 13
-        self.RIGHT_ECHO = 16
-        self.RADAR_TRIG = 20
-        self.RADAR_ECHO = 21
-        self.servoPin = 19
+        self.LEFT_TRIG = 16
+        self.LEFT_ECHO = 19
+        self.RIGHT_TRIG = 20
+        self.RIGHT_ECHO = 21
+        self.RADAR_TRIG = 12
+        self.RADAR_ECHO = 13
+        self.servoPin = 6
+
+        #4grey,17purp,18blue,27green,22yell,23oran,24red,25brown,5black,
+        #5vblue,3vyell,GNDgreen
 
         # Setup pins for input or output
         GPIO.setup(self.LEFT_TRIG, GPIO.OUT)
@@ -62,11 +65,11 @@ class sensors():
         return distance
 
     def forward_left(self):
-        left = self.average_distance(self.left_sensor)
+        left = self.get_distance(self.left_sensor)
         return left
 
     def forward_right(self):
-        right = self.average_distance(self.right_sensor)
+        right = self.get_distance(self.right_sensor)
         return right
 
     def radar(self):
