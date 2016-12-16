@@ -20,13 +20,15 @@
 import RPi.GPIO as GPIO
 import time
 
+# 4grey,17purp,18blue,27green,22yell,23oran,24red,25brown,5black,
+
 # Define GPIO to LCD mapping
-LCD_RS = 27
+LCD_RS = 23
 LCD_E = 22
-LCD_D4 = 25
-LCD_D5 = 24
-LCD_D6 = 23
-LCD_D7 = 18
+LCD_D4 = 27
+LCD_D5 = 18
+LCD_D6 = 17
+LCD_D7 = 4
 
 # Define some device constants
 LCD_WIDTH = 16  # Maximum characters per line
