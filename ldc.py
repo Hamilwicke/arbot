@@ -61,8 +61,8 @@ def main():
     while True:
         print 'loop'
         # Send some test
-        lcd_string("Hello Oscar", LCD_LINE_1)
-        lcd_string("", LCD_LINE_2)
+        lcd_string("    OH SHIT!    ", LCD_LINE_1)
+        lcd_string("I'm Up Side Down", LCD_LINE_2)
 
         #time.sleep(3)  # 3 second delay
 
