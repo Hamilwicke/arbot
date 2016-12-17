@@ -1,17 +1,41 @@
 import RPi.GPIO as GPIO
 import time
 import sensor
-snsr = sensor.sensors()
+import time
+import wiringpi
 import math
 
+snsr = sensor.sensors()
 
-GPIO.setmode(GPIO.BCM)
-servoPin = 18
-GPIO.setup(servoPin, GPIO.OUT)
-pwm = GPIO.PWM(servoPin, 50)
-pwm.start(7)
+# use 'GPIO naming'
+wiringpi.wiringPiSetupGpio()
+
+# set #18 to be a PWM output
+wiringpi.pinMode(18, wiringpi.GPIO.PWM_OUTPUT)
+
+# set the PWM mode to milliseconds stype
+wiringpi.pwmSetMode(wiringpi.GPIO.PWM_MODE_MS)
+
+# divide down clock
+wiringpi.pwmSetClock(192)
+wiringpi.pwmSetRange(2000)
+
+delay_period = 0.000
+
+while True:
+    for pulse in range(50, 250, 5):
+        wiringpi.pwmWrite(18, pulse)
+        dist = snsr.average_distance(snsr.radar_sensor)
+        print 'angle: %s, distance: %s' % (pulse, dist)
+        time.sleep(delay_period)
+    for pulse in range(250, 50, -5):
+        wiringpi.pwmWrite(18, pulse)
+        dist = snsr.average_distance(snsr.radar_sensor)
+        print 'angle: %s, distance: %s' % (pulse, dist)
+        time.sleep(delay_period)
 
 
+'''
 while True:
 
     for i in range(10, 160, 10):
@@ -29,7 +53,7 @@ while True:
         time.sleep(.05)
 
 
-'''
+
     def collision_reading(theta, hyp):
         if theta > 90:
             angle = 180 - theta
