@@ -17,7 +17,7 @@ wiringpi.pwmSetMode(wiringpi.GPIO.PWM_MODE_MS)
 wiringpi.pwmSetClock(192)
 wiringpi.pwmSetRange(2000)
 
-delay_period = 0.001
+delay_period = 0.005
 
 while True:
     for pulse in range(50, 250, 1):
