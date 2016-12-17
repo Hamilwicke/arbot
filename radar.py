@@ -12,6 +12,7 @@ pwm = GPIO.PWM(servoPin, 50)
 pwm.start(7)
 
 
+
 while True:
 
     for i in range(10, 160, 5):
@@ -28,29 +29,6 @@ while True:
         print 'angle: %s, distance: %s' % (i, dist)
         time.sleep(.05)
 
-
-'''
-    def collision_reading(theta, hyp):
-        if theta > 90:
-            angle = 180 - theta
-        else:
-            angle = theta
-        return hyp*math.cos(math.radians(angle))
-
-    def collision_avoidance(self, radar_angle, radar_distance):
-
-        collision_reading = self.collision_reading(radar_angle, radar_distance)
-        if radar_angle > 90:
-            if collision_reading <= 20:
-                return #soft right turn
-            if collision_reading <=10:
-                return #hard right turn
-        if radar_angle < 90:
-            if collision_reading <= 20:
-                return #soft left turn
-            if collision_reading <=10:
-                return #hard left turn
-'''
 
 pwm.stop()
 GPIO.cleanup()
