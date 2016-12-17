@@ -16,9 +16,9 @@ class sensors():
         self.RIGHT_ECHO = 21
         self.RADAR_TRIG = 12
         self.RADAR_ECHO = 13
-        self.servoPin = 6
+        self.servoPin = 18
 
-        #4grey,17purp,18blue,27green,22yell,23oran,24red,25brown,5black,
+        #4grey,17purp,6blue,27green,22yell,23oran,24red,25brown,5black,
         #5vblue,3vyell,GNDgreen
 
         # Setup pins for input or output

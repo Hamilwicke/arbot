@@ -26,7 +26,7 @@ import time
 LCD_RS = 23
 LCD_E = 22
 LCD_D4 = 27
-LCD_D5 = 18
+LCD_D5 = 6
 LCD_D6 = 17
 LCD_D7 = 4
 
