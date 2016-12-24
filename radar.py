@@ -23,15 +23,15 @@ wiringpi.pwmSetRange(2000)
 delay_period = 0.000
 
 while True:
-    for pulse in range(50, 250, 5):
+    for pulse in range(50, 230, 5):
         wiringpi.pwmWrite(18, pulse)
         dist = snsr.average_distance(snsr.radar_sensor)
-        print 'angle: %s, distance: %s' % (pulse, dist)
+        print 'angle: %s, distance: %s' % (pulse-50, dist)
         time.sleep(delay_period)
-    for pulse in range(250, 50, -5):
+    for pulse in range(230, 50, -5):
         wiringpi.pwmWrite(18, pulse)
         dist = snsr.average_distance(snsr.radar_sensor)
-        print 'angle: %s, distance: %s' % (pulse, dist)
+        print 'angle: %s, distance: %s' % (pulse-50, dist)
         time.sleep(delay_period)
 
 
