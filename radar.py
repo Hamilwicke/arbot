@@ -34,25 +34,7 @@ while True:
         print 'angle: %s, distance: %s' % (pulse-60, dist)
         time.sleep(delay_period)
 
-
-'''
-while True:
-
-    for i in range(10, 160, 10):
-        DC = 1. / 20. * i + 3
-        pwm.ChangeDutyCycle(DC)
-        dist = snsr.average_distance(snsr.radar_sensor)
-        print 'angle: %s, distance: %s' % (i, dist)
-        time.sleep(.05)
-
-    for i in reversed(range(10, 160, 10)):
-        DC = 1./20. * i + 3
-        pwm.ChangeDutyCycle(DC)
-        dist = snsr.average_distance(snsr.radar_sensor)
-        print 'angle: %s, distance: %s' % (i, dist)
-        time.sleep(.05)
-
-
+    '''
 
     def collision_reading(theta, hyp):
         if theta > 90:
@@ -74,7 +56,26 @@ while True:
                 return #soft left turn
             if collision_reading <=10:
                 return #hard left turn
-'''
+
+
 
 pwm.stop()
 GPIO.cleanup()
+
+
+while True:
+
+    for i in range(10, 160, 10):
+        DC = 1. / 20. * i + 3
+        pwm.ChangeDutyCycle(DC)
+        dist = snsr.average_distance(snsr.radar_sensor)
+        print 'angle: %s, distance: %s' % (i, dist)
+        time.sleep(.05)
+
+    for i in reversed(range(10, 160, 10)):
+        DC = 1./20. * i + 3
+        pwm.ChangeDutyCycle(DC)
+        dist = snsr.average_distance(snsr.radar_sensor)
+        print 'angle: %s, distance: %s' % (i, dist)
+        time.sleep(.05)
+'''
