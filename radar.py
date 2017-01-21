@@ -20,16 +20,20 @@ wiringpi.pwmSetMode(wiringpi.GPIO.PWM_MODE_MS)
 wiringpi.pwmSetClock(192)
 wiringpi.pwmSetRange(2000)
 
-delay_period = 0.000
+delay_period = 0.001
 
 while True:
     for pulse in range(60, 230, 5):
+        print 'wiringpi.pwmWrite(18, pulse)'
         wiringpi.pwmWrite(18, pulse)
+        print 'dist = snsr.average_distance(snsr.radar_sensor)'
         dist = snsr.average_distance(snsr.radar_sensor)
         print 'angle: %s, distance: %s' % (pulse-60, dist)
         time.sleep(delay_period)
-    for pulse in range(250, 60, -5):
+    for pulse in range(230, 60, -5):
+        print 'wiringpi.pwmWrite(18, pulse)'
         wiringpi.pwmWrite(18, pulse)
+        print 'dist = snsr.average_distance(snsr.radar_sensor)'
         dist = snsr.average_distance(snsr.radar_sensor)
         print 'angle: %s, distance: %s' % (pulse-60, dist)
         time.sleep(delay_period)
